@@ -1,0 +1,12 @@
+{
+  "name": "serversidelanguages",
+  "version": "1.0.0",
+  "description": "These files are to show knowledge of multiple SSL's at there most basic form.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

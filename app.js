@@ -1,4 +1,4 @@
-const { isUtf8 } = require("buffer");
+
 var fs = require("fs");
 var http = require("http");
 var path = require("path");
@@ -29,10 +29,13 @@ http.createServer(function (req, res) {
     if (f) {
         fs.readFile(f, function (err, data) {
             if (page) {
+                console.log(err)
                 if (mimeTypes.hasOwnProperty(ext)) {
-                    res.writeHead(200, { 'Content-Type': 'text/plain' }); //header()
-                    res.write("<script>var page='" + 'utf8' + "';</script>");
+                    res.writeHead(200, { 'Content-Type': 'text/html' }); //header()
+                    res.write("<script>var page=" + 'utf8' + ";</script>");
+                    res.write("<script>var page=" + filename + ";</srcipt>");
                     res.end(data);
+
                 }
             }
         })
