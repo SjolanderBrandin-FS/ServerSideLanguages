@@ -1,3 +1,4 @@
+// "use strict"
 
 var fs = require("fs");
 var http = require("http");
@@ -10,14 +11,14 @@ http.createServer(function (req, res) {
     var parsed = url.parse(req.url);
     var filename = path.parse(parsed.pathname);
 
-    filen = filename.name || "" + "index"; filename.name;
-    ext = filename.ext || "" + ".html"; filename.ext;
-    dir = filename.dir == "/" + ""; filename.dir + "/";
-    page = filename.name || "" + "index.html"; filename.name;
+    let fileN = filename.name || "" + "index"; filename.name;
+    let ext = filename.ext || "" + ".html"; filename.ext;
+    let dir = filename.dir || "/" + ""; filename.dir + "/";
+    let page = filename.name || "" + "index.html"; filename.name;
 
-    console.log(">>>>>>>>>>>>>>>>>>> ", dir, filen, ext);
+    console.log(">>>>>>>>>>>>>>>>>>> ", dir, fileN, ext);
 
-    f = (dir + filen + ext).toString().replace("/", "");
+    let f = (dir + fileN + ext).toString().replace("/", "");
 
 
     var mimeTypes = {
@@ -34,9 +35,9 @@ http.createServer(function (req, res) {
             //console.log(err);
             if (page) {
                 if (mimeTypes.hasOwnProperty(ext)) {
-                    res.writeHead(200, { 'Content-Type': 'text/html' }); //header()
-                    res.write("<script>var page=" + 'utf8' + ";</script>");
-                    res.write("<script>var page=" + f + ";</srcipt>");
+                    res.writeHead(200, { 'Content-Type': 'text/plain' }); //header()
+                    // res.write("<script>var page=" + 'utf8' + ";</script>");
+                    res.write("<script>var page='" + f + "';</srcipt>");
                     res.end(data);
 
                 }
@@ -46,7 +47,6 @@ http.createServer(function (req, res) {
 
 
 
-}).listen("8080", function (err) {
+}).listen("8080", function () {
     console.log("info", 'Server is a port : ' + 8080);
-    console.log(err);
 })
