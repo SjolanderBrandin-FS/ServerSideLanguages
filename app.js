@@ -1,5 +1,3 @@
-// "use strict"
-
 var fs = require("fs");
 var http = require("http");
 var path = require("path");
@@ -14,9 +12,9 @@ http.createServer(function (req, res) {
     let fileN = filename.name || "" + "index"; filename.name;
     let ext = filename.ext || "" + ".html"; filename.ext;
     let dir = filename.dir || "/" + ""; filename.dir + "/";
-    let page = filename.name || "" + "index.html"; filename.name;
+    let page = filename.name || "" + "index.html"; filename.page;
 
-    console.log(">>>>>>>>>>>>>>>>>>> ", dir, fileN, ext);
+    console.log(">>>>>>>>>>>>>>>>>>> ", dir + fileN + ext);
 
     let f = (dir + fileN + ext).toString().replace("/", "");
 
@@ -32,13 +30,14 @@ http.createServer(function (req, res) {
 
     if (f) {
         fs.readFile(f, function (err, data) {
-            //console.log(err);
             if (page) {
+                console.log(err);
                 if (mimeTypes.hasOwnProperty(ext)) {
-                    res.writeHead(200, { 'Content-Type': 'text/plain' }); //header()
-                    // res.write("<script>var page=" + 'utf8' + ";</script>");
+
+                    res.writeHead(200, { 'Content-Type': 'text/html' }); //header()
+                    res.write("<script>var page=" + 'utf-8' + ";</script>");
                     res.write("<script>var page='" + f + "';</srcipt>");
-                    res.end(data);
+                    res.end(data, 'utf-8');
 
                 }
             }
