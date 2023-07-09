@@ -9,6 +9,7 @@ http.createServer(function (req, res) {
     var parsed = url.parse(req.url);
     var filename = path.parse(parsed.pathname);
 
+
     let fileN = filename.name || "" + "index"; filename.name;
     let ext = filename.ext || "" + ".html"; filename.ext;
     let dir = filename.dir || "/" + ""; filename.dir + "/";
@@ -34,9 +35,8 @@ http.createServer(function (req, res) {
                 console.log(err);
                 if (mimeTypes.hasOwnProperty(ext)) {
 
-                    res.writeHead(200, { 'Content-Type': 'text/html' }); //header()
-                    res.write("<script>var page=" + 'utf-8' + ";</script>");
-                    res.write("<script>var page='" + f + "';</srcipt>");
+                    res.writeHead(test, { 'Content-Type': 'text/html' }); //header()
+                    res.write("<script>var page='" + page + "';</srcipt>");
                     res.end(data, 'utf-8');
 
                 }
