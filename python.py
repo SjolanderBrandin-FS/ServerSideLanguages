@@ -11,26 +11,25 @@ import sys
 name = input("Please enter the name of the student: ")
 assignment = input("Please enter the name of the assignment: ")
 grade = input("What percentage grade did they receive? ")
-numGrade = int(grade)
-if numGrade < 60:
+if grade < "60":
     letterGrade = "F"
     print(name)
     print(assignment)
     print(letterGrade)
     print("The assignment was missing all of the required functionality.")
-elif numGrade >= 60 and numGrade <= 69:
+elif grade >= "60" and grade <= "69":
     letterGrade = "D"
     print(name)
     print(assignment)
     print(letterGrade)
     print("The assignment was missing most of the required functionality.")
-elif numGrade >= 70 and numGrade <= 79:
+elif grade >= "70" and grade <= "79":
     letterGrade = "C"
     print(name)
     print(assignment)
     print(letterGrade)
     print("The assignment was missing some of the required functionality.")
-elif numGrade >= 80 and numGrade <= 89:
+elif grade >= "80" and grade <= "89":
     letterGrade = "B"
     print(name)
     print(assignment)
