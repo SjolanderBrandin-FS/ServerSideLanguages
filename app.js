@@ -10,33 +10,32 @@ http.createServer(function (req, res) {
     var filename = path.parse(parsed.pathname);
 
 
-    let fileN = filename.name || "" + "index"; filename.name;
-    let ext = filename.ext || "" + ".html"; filename.ext;
-    let dir = filename.dir || "/" + ""; filename.dir + "/";
-    let page = filename.name || "" + "index.html"; filename.page;
+    filen = filename.name == "" ? "index" : filename.filen;
+    ext = filename.ext == "" ? ".html" : filename.ext;
+    dir = filename.dir == "/" ? "" : filename.dir + "/";
+    page = filename.name == "" ? "index.html" : filename.name;
 
-    console.log(">>>>>>>>>>>>>>>>>>> ", dir + fileN + ext);
+    console.log(">>>>>>>>>>>>>>>>>>> ", dir + filen + ext);
 
-    let f = (dir + fileN + ext).toString().replace("/", "");
+    f = (dir + filen + ext).replace("/", "");
 
 
     var mimeTypes = {
-        'html': 'text/html',
+        '.html': 'text/html',
         '.js': 'text/javascript',
         '.css': 'text/css',
-        '.png': 'text/png',
-        '.jpg': 'text/jpg',
-        '.gif': 'text/gif',
+        '.png': 'image/png',
+        '.jpg': 'image/jpg',
+        '.gif': 'image/gif',
     };
 
     if (f) {
         fs.readFile(f, function (err, data) {
             if (page) {
-                console.log(err);
                 if (mimeTypes.hasOwnProperty(ext)) {
-
-                    res.writeHead(test, { 'Content-Type': 'text/html' }); //header()
-                    res.write("<script>var page='" + page + "';</srcipt>");
+                    console.log(err);
+                    res.writeHead(200, { 'Content-Type': 'text/html' }); //header()
+                    res.write("<script>var page='" + f + "';</script>");
                     res.end(data, 'utf-8');
 
                 }
@@ -48,4 +47,5 @@ http.createServer(function (req, res) {
 
 }).listen("8080", function () {
     console.log("info", 'Server is a port : ' + 8080);
+
 })
