@@ -34,8 +34,8 @@ http.createServer(function (req, res) {
             if (page) {
                 if (mimeTypes.hasOwnProperty(ext)) {
                     console.log(err);
-                    res.writeHead(200, { 'Content-Type': 'text/html' }); //header()
-                    res.write("<script>var page='" + f + "';</script>");
+                    res.writeHead(200, { 'Content-Type': 'mimeTypes.' + ext }); //header()
+                    res.write("<script>var page='" + filen + "';</script>");
                     res.end(data, 'utf-8');
 
                 }
