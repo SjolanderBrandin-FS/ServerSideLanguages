@@ -10,7 +10,9 @@ http.createServer(function (req, res) {
     var filename = path.parse(parsed.pathname);
 
 
-    filen = filename.name == "" ? "index" : filename.filen;
+    // filen = filename.name == "" ? "index" : filename.filen;
+    // This should be .name
+    filen = filename.name == "" ? "index" : filename.name;
     ext = filename.ext == "" ? ".html" : filename.ext;
     dir = filename.dir == "/" ? "" : filename.dir + "/";
     page = filename.name == "" ? "index.html" : filename.name;
