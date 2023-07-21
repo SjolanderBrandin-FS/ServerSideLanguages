@@ -10,7 +10,7 @@ http.createServer(function (req, res) {
     var filename = path.parse(parsed.pathname);
 
 
-    filen = filename.name == "" ? "index" : filename.filen;
+    filen = filename.name == "" ? "index" : filename.file.name;
     ext = filename.ext == "" ? ".html" : filename.ext;
     dir = filename.dir == "/" ? "" : filename.dir + "/";
     page = filename.name == "" ? "index.html" : filename.name;
@@ -36,7 +36,7 @@ http.createServer(function (req, res) {
                     console.log(err);
                     res.writeHead(200, { 'Content-Type': 'mimeTypes.' + ext }); //header()
                     console.log(">>>>>>>>>>>>>>>>>>" + f);
-                    res.write("<script>var page='" + f + "';</script>");
+                    res.write("<script>var page='" + filen + "';</script>");
                     res.end(data, 'utf-8');
 
                 }
