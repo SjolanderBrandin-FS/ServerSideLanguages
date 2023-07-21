@@ -15,7 +15,7 @@ http.createServer(function (req, res) {
     dir = filename.dir == "/" ? "" : filename.dir + "/";
     page = filename.name == "" ? "index.html" : filename.name;
 
-    console.log(">>>>>>>>>>>>>>>>>>> ", dir + filen + ext);
+    // console.log(">>>>>>>>>>>>>>>>>>> " + dir + filen + ext);
 
     f = (dir + filen + ext).replace("/", "");
 
@@ -35,7 +35,8 @@ http.createServer(function (req, res) {
                 if (mimeTypes.hasOwnProperty(ext)) {
                     console.log(err);
                     res.writeHead(200, { 'Content-Type': 'mimeTypes.' + ext }); //header()
-                    res.write("<script>var page='" + filen + "';</script>");
+                    console.log(">>>>>>>>>>>>>>>>>>" + f);
+                    res.write("<script>var page='" + f + "';</script>");
                     res.end(data, 'utf-8');
 
                 }
