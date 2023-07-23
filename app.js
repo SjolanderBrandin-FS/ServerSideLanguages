@@ -18,21 +18,13 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Get Pages
 router.get("/", function (req, res) {
-
     res.render("index", { pagename: "Home" });
-
 })
-
 router.get("/about", function (req, res) {
-
     res.render("about", { pagename: "About" });
-
 })
-
 router.get("/registration", function (req, res) {
-
     res.render("registration", { pagename: "Registration" });
-
 })
 
 
@@ -50,12 +42,12 @@ router.post("/post", function (req, res) {
         errors.push("Password is required!")
     }
 
-    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var validLogin = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    if (!validRegex.test(req.body.email)) {
+    if (!validLogin.test(req.body.email)) {
         errors.push("Email is Invalid")
     }
-    if (!validRegex.test(req.body.password)) {
+    if (!validLogin.test(req.body.password)) {
         errors.push("Password is Invalid")
     }
     res.render("index", { pagename: "Home", errors: errors });
