@@ -21,10 +21,10 @@
         %- includes(''./partial/nav') %>
         %- if(typeof (errors) !='undefined' ){%>
         %- for(x in errors){%>
-        <br><span>
-            %=errors[x]%>
-        </span>
+        %-if(errors[x]==="Success")%>
+        <br><span style="color: #20c997">%=errors[x]%></span>
         %}%>
+        <br><span>%=errors[x]%></span>
         %}%>
 
         <!-- Header-->
