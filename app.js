@@ -3,8 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const ejs = require("ejs");
-const path = require("path");
+//const ejs = require("ejs");
+//const path = require("path");
 
 const router = express.Router();
 app.use(bodyParser.json());
@@ -13,20 +13,42 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs')._express);
 
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 
+const session = require("express-session");
+app.use(session({ secret: "secret", saveUninitialized: true, resave: true }));
+var sess;
 
 // Get Pages
 router.get("/", function (req, res) {
-    res.render("index", { pagename: "Home" });
-})
+    sess = req.session;
+    res.render("index", { pagename: "Home", sess: sess });
+});
 router.get("/about", function (req, res) {
-    res.render("about", { pagename: "About" });
-})
+    sess = req.session;
+    res.render("about", { pagename: "About", sess: sess });
+});
 router.get("/registration", function (req, res) {
     res.render("registration", { pagename: "Registration" });
+});
+
+router.get("/profile", function (req, res) {
+    sess = req.session;
+    if (typeof (sess) === "undefined" || sess.loggedin == true) {
+        var errors = ["Not Authenticated User"];
+        res.render("index", { pagename: "Home", errors: errors });
+    } else {
+        res.render("profile", { pagename: "Profile", sess: sess });
+    }
 })
 
+// Logout
+router.get("/logout", function (req, res) {
+    sess = req.session;
+    sess.destroy(function (req, res) {
+        res.redirect("/");
+    })
+})
 
 //Login Form
 router.post("/post", function (req, res) {
@@ -50,6 +72,12 @@ router.post("/post", function (req, res) {
     if (!validLogin.test(req.body.password)) {
         errors.push("Password is Invalid")
     }
+
+    // Login Condition for Username and Password
+    sess = req.session;
+    sess.loggedin = true;
+    res.render('profile', { pagename: "Profile", errors: errors });
+
     res.render("index", { pagename: "Home", errors: errors });
 
 })
