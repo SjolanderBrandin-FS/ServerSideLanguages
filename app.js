@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
-app.engine("ejs", require("ejs")._express);
+app.engine('ejs', require('ejs')._express);
 
 app.set('views', path.join(__dirname, 'views'));
 
@@ -34,7 +34,7 @@ router.post("/post", function (req, res) {
     // console.log(req.body.email);
     // console.log(req.body.password);
 
-    var errors = [];
+    let errors = [];
     if (req.body.email === '') {
         errors.push("Email is required!")
     }
