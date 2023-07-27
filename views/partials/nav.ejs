@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="/">Start Bootstrap</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
@@ -17,14 +17,14 @@
                     <% if (pagename=="About" ) {%>
                         <a class="nav-link" style="color:orange;" href="/About">About</a>
                         <%}else{%>
-                            <a class="nav-link" href="/">About</a>
+                            <a class="nav-link" href="/About">About</a>
                             <%}%>
                 </li>
                 <li class="nav-item">
                     <% if (pagename=="Registration" ) {%>
                         <a class="nav-link" style="color:orange;" href="/Registration">Registration</a>
                         <%}else{%>
-                            <a class="nav-link" href="/">Registration</a>
+                            <a class="nav-link" href="/Registration">Registration</a>
                             <%}%>
                 </li>
                 <% if(typeof(sess)!="undefined" && sess.loggedin==true){%>
@@ -56,7 +56,7 @@
     <form action="/login" method="POST">
         <input type="text" name="email" placeholder="Email">
         <input type="text" name="password" placeholder="Password">
-        <input type="submit">
+        <button type="submit">Submit</button>
     </form>
 </div>
 

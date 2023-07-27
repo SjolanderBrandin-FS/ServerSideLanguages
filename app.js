@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
-app.engine('ejs', require('ejs')._express);
+app.engine('ejs', require('ejs').__express);
 
 //app.set('views', path.join(__dirname, 'views'));
 
@@ -51,7 +51,7 @@ router.get("/logout", function (req, res) {
 })
 
 //Login Form
-router.post("/post", function (req, res) {
+router.post("/login", function (req, res) {
 
     // console.log(req.body.email);
     // console.log(req.body.password);
